@@ -135,8 +135,9 @@ simple_test() ->
 
     
     %% Merge
-    TempFNs = 
+    TempFNsAll = 
     [filename:join(Dir, integer_to_list(Num)) || Num <- lists:seq(From, PartCount)],
+    TempFNs = [File || File <- TempFNsAll, filelib:is_regular(File)],
     LazyReaders = 
     [lf_open(FN) || FN <- TempFNs],
 
